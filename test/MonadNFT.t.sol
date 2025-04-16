@@ -34,12 +34,7 @@ contract BoykaNFTTest is Test {
 
     function test_MintNotOwner() public {
         vm.prank(user1);
-        vm.expectRevert(
-            abi.encodeWithSignature(
-                "OwnableUnauthorizedAccount(address)",
-                user1
-            )
-        );
+        vm.expectRevert(abi.encodeWithSignature("OwnableUnauthorizedAccount(address)", user1));
         nft.safeMint(user1, "ipfs://test1");
     }
 
@@ -63,9 +58,7 @@ contract BoykaNFTTest is Test {
         vm.prank(user1);
         nft.burn(0);
 
-        vm.expectRevert(
-            abi.encodeWithSignature("ERC721NonexistentToken(uint256)", 0)
-        );
+        vm.expectRevert(abi.encodeWithSignature("ERC721NonexistentToken(uint256)", 0));
         nft.ownerOf(0);
     }
 
